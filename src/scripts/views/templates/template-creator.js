@@ -5,13 +5,13 @@ const createRestaurantItemTemplate = (restaurant) => `
   <div class="rating" style="display: flex; flex-direction: row-reverse;"> 
     <i class="fa-solid fa-star" style="color: #fff700;"></i> ${restaurant.rating}/5
   </div>
+  <div class="restaurant">
+    <a class="restaurant-name" href="/#/detail/${restaurant.id}">${restaurant.name}</a>
+  </div>
   <div class="list-city">
-    <h1><a href="/#/detail/${restaurant.id}">${restaurant.city}</a></h1>
+    ${restaurant.city}
   </div>
-  <div class="list-name">
-    ${restaurant.name}
-  </div>
-  <img class="list-thumb" src="${restaurant.pictureId ? API_ENDPOINT.IMG.S + restaurant.pictureId : 'https://picsum.photos/id/666/800/450?grayscale'}" alt="${restaurant.name}" crossorigin="anonymous">
+  <img class="list-thumb" src="${restaurant.pictureId ? API_ENDPOINT.IMG.S + restaurant.pictureId : 'https://picsum.photos/id/666/800/450?grayscale'}" alt="${restaurant.name}" crossorigin="anonymous" loading="lazy">
 </div>
 `;
 
@@ -32,29 +32,26 @@ const createRestaurantDetailTemplate = (restaurant) => `
     </div>
   </div>
   <p class="detail-desc">${restaurant.description}</p>
-<div class="detail-menus">
-  <div class="detail-foods">
-    <h5>Menu Makanan</h5>
-    <ul>
-    ${restaurant.menus.foods.map((food) => `<li>${food.name}</li>`).join('')}
-    </ul>
+    <div class="detail-menus">
+      <div class="detail-foods">
+        <h5>Menu Makanan</h5>
+        <ul>
+          ${restaurant.menus.foods.map((food) => `<li>${food.name}</li>`).join('')}
+        </ul>
+      </div>
+      <div class="detail-drinks">
+        <h5>Menu Minuman</h5>
+        <ul>
+          ${restaurant.menus.drinks.map((drink) => `<li>${drink.name}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+  <div class="detail-review">
+    <h6>Hasil Review</h6>
+    <p>"${restaurant.customerReviews[0].review}"</p>
+    <p>Oleh: ${restaurant.customerReviews[0].name} (${restaurant.customerReviews[0].date})</p>
   </div>
-  <div class="detail-drinks">
-    <h5>Menu Minuman</h5>
-    <ul>
-    ${restaurant.menus.foods.map((food) => `<li>${food.name}</li>`).join('')}
-    </ul>
-  </div>
 </div>
-<div class="detail-review">
-  <h6>Hasil Review</h6>
-  ${restaurant.customerReviews.map((review) => `
-  <p>"${review.review}"</p>
-  <p>Oleh: ${review.name} (${review.date})</p>
-`).join('')}
-</div>
-</div>
-
 `;
 
 const createLikeRestaurantButtonTemplate = () => `
@@ -73,4 +70,3 @@ export {
   createRestaurantItemTemplate, createRestaurantDetailTemplate,
   createLikeRestaurantButtonTemplate, createUnlikeRestauarntButtonTemplate,
 };
-

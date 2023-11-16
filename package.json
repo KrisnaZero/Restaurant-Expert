@@ -10,7 +10,8 @@
     "serve": "http-server dist",
     "e2e": "codeceptjs run --steps",
     "build-image": "node sharp.js",
-    "test:watch": "jest --watchAll"
+    "test:watch": "jest --watchAll",
+    "test": "karma start"
   },
   "keywords": [],
   "author": "your_name <your.email@domain.com>",

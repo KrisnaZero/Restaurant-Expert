@@ -168,6 +168,10 @@ main {
   margin: 50px auto;
   text-align: center;
 }
+.restaurant-name:hover {
+  color: #4f8426;
+  font-size: 20px;
+}
 
 .explore-title {
   text-align: center;
